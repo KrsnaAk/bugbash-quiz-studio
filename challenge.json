@@ -1,0 +1,7 @@
+{
+  "id": "quiz-studio",
+  "title": "Quiz Studio",
+  "difficulty": "starter",
+  "starterOnly": true,
+  "privateTestsExcluded": true
+}
