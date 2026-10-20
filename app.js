@@ -50,3 +50,12 @@ function render() {
   };
 }
 render();
+
+
+// Added organizer feature: answer progress indicator.
+function renderAnswerProgress() {
+  const host = document.querySelector("#app"); if (!host || document.querySelector("#answer-progress")) return;
+  const progress = document.createElement("p"); progress.id = "answer-progress"; progress.className = "muted small";
+  progress.textContent = answers.filter((answer) => answer !== undefined).length + "/" + questions.length + " answered"; host.prepend(progress);
+}
+renderAnswerProgress();
