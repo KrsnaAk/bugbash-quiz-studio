@@ -59,3 +59,19 @@ function renderAnswerProgress() {
   progress.textContent = answers.filter((answer) => answer !== undefined).length + "/" + questions.length + " answered"; host.prepend(progress);
 }
 renderAnswerProgress();
+
+
+// Quiz expansion: review notes and completion summary.
+(() => {
+  const baseRender = render; let notesVisible = false;
+  const enhance = () => {
+    if (document.querySelector("#review-tools")) return;
+    const panel = document.createElement("section"); panel.id = "review-tools"; panel.className = "item";
+    panel.innerHTML = '<strong>Review tools</strong><button id="toggle-notes" type="button">Show explanations</button><p id="review-summary" class="muted small"></p>';
+    document.querySelector("#app")?.append(panel);
+    panel.querySelector("#toggle-notes").onclick = () => { notesVisible = !notesVisible; panel.querySelector("#review-summary").textContent = notesVisible ? questions.map((question) => question.q + " — review the selected answer").join(" | ") : "Explanations hidden"; };
+    panel.querySelector("#review-summary").textContent = answers.filter((answer) => answer !== undefined).length + " answer(s) recorded";
+  };
+  render = () => { baseRender(); enhance(); };
+  enhance();
+})();
