@@ -22,8 +22,8 @@ let index = 0,
 function render() {
   const q = questions[index];
   if (submitted) {
-    const score = answers.reduce(
-      (n, a, i) => n + (a === questions[i].correct),
+    const score = questions.reduce(
+      (n, q, i) => n + (answers[i] !== undefined && answers[i] == q.correct ? 1 : 0),
       0,
     );
     app.innerHTML = `<span class="label">Quiz complete</span><h2>${score}/${questions.length} correct</h2><div class="list">${questions.map((x, i) => `<article class="item"><div><strong>${x.q}</strong><span class="muted small">You chose: ${x.a[answers[i]] || "No answer"}</span></div><span class="pill">${answers[i] === x.correct ? "Correct" : "Review"}</span></article>`).join("")}</div><button id="again">Start again</button>`;
