@@ -35,7 +35,7 @@ function render() {
     };
     return;
   }
-  app.innerHTML = `<span class="label">Question ${index + 1} of ${questions.length}</span><h2>${q.q}</h2><div class="stack">${q.a.map((a, i) => `<button class="${answers[index] == i ? "selected" : "secondary"}" data-answer="${i}">${a}</button>`).join("")}</div><div class="row space"><span class="muted small">${Math.round((index / questions.length) * 100)}% complete</span><button id="next" ${answers[index] === undefined ? "disabled" : ""}>${index === questions.length - 1 ? "Finish" : "Next"}</button></div>`;
+  app.innerHTML = `<span class="label">Question ${index + 1} of ${questions.length}</span><h2>${q.q}</h2><div class="stack">${q.a.map((a, i) => `<button class="${answers[index] == i ? "selected" : "secondary"}" data-answer="${i}">${a}</button>`).join("")}</div><div class="row space"><span class="muted small">${Math.round(((index + 1) / questions.length) * 100)}% complete</span><button id="next" ${answers[index] === undefined ? "disabled" : ""}>${index === questions.length - 1 ? "Finish" : "Next"}</button></div>`;
   document.querySelectorAll("[data-answer]").forEach(
     (b) =>
       (b.onclick = () => {
